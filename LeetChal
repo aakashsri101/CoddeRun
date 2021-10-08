@@ -7,10 +7,29 @@ public:
         map<int,vector<int>> ma;
         vector<int> res;
         for(int i=0;i<nums.size();i++){
-            
+    if(ma.find(nums[i])==ma.end()){
+                vector<int> a;
+                a.push_back(i);
+                ma[nums[i]]=a;
+            }else{
+                ma[nums[i]].push_back(i);
+            }        
         }
         for(auto i=ma.begin();i!=ma.end();i++){
-            
+ int nex=target-i->first;
+            if(ma.find(nex)==ma.end())continue;
+            else{
+                if(i->first==nex && ma[nex].size()>=2){
+                    res.push_back(ma[nex][0]);
+                    res.push_back(ma[nex][1]);
+                    break;
+                }
+                else{
+                    res.push_back(ma[i->first][0]);
+                    res.push_back(ma[nex][0]);
+                    break;
+                }
+            }           
         }
         sort(res.begin(),res.end());
         return res;
