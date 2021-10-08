@@ -1,0 +1,148 @@
+LeetCode Problem 1 Two Sum
+CPP
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int,vector<int>> ma;
+        vector<int> res;
+        for(int i=0;i<nums.size();i++){
+            
+        }
+        for(auto i=ma.begin();i!=ma.end();i++){
+            
+        }
+        sort(res.begin(),res.end());
+        return res;
+    }
+};
+
+
+
+LeetCode Problem 5. Longest Palindromic Substring
+
+CPP
+
+class Solution {
+public:
+    
+    string palindr(string str){
+    int n = str.size();
+    bool table[n][n];
+ 
+    memset(table, 0, sizeof(table));
+ 
+    int maxLength = 1;
+ 
+    for (int i = 0; i < n; ++i)
+        table[i][i] = true;
+ 
+    int start = 0;
+    for (int i = 0; i < n - 1; ++i) {
+        if (str[i] == str[i + 1]) {
+            table[i][i + 1] = true;
+            start = i;
+            maxLength = 2;
+        }
+    }
+ 
+    for (int k = 3; k <= n; ++k) {
+        for (int i = 0; i < n - k + 1; ++i) {
+            int j = i + k - 1;
+        if (table[i + 1][j - 1] && str[i] == str[j]) {
+                table[i][j] = true;
+ 
+                if (k > maxLength) {
+                    start = i;
+                    maxLength = k;
+                }
+            }
+        }
+    }
+        string strr="";
+        for (int i = start; i <= start + maxLength - 1; ++i)
+        strr+=str[i];
+    return strr;
+    // cout << "Longest palindrome substring is: ";
+    // printSubStr(str, start, start + maxLength - 1);
+    // return maxLength;
+    }
+    
+     pair<int,int> pali(string s , int sta , int end){
+        if(sta>end)return make_pair(0,sta);
+        if(sta==end)return make_pair(1,sta);
+        int i=sta,j=end;
+        int fl=0;
+        while(i<j){
+            if(s[i]==s[j]){
+                i++;
+                j--;
+            }
+            else{
+                fl=1;
+                break;
+            }
+            
+        }
+        if(fl==0){
+            pair<int,int> aa=pali(s,sta+1,end-1);
+            // return pali(s,sta+1,end-1).+2;
+            return make_pair(aa.first+2,aa.second);
+        }
+        else{
+            pair<int,int> aa=pali(s,sta,end-1);
+            pair<int,int> ab=pali(s,sta+1,end);
+            if(aa.first>ab.first)return aa;
+            else return ab;
+            // return max(aa.first,ab.first);
+            // return max(pali(s,sta,end-1).first,pali(s,sta+1,end).first);
+        }
+    }
+//     int pali(string s , int sta , int end){
+//         if(sta>end)return 0;
+//         if(sta==end)return 1;
+//         int i=sta,j=end;
+//         int fl=0;
+//         while(i<j){
+//             if(s[i]==s[j]){
+//                 i++;
+//                 j--;
+//             }
+//             else{
+//                 fl=1;
+//                 break;
+//             }
+            
+//         }
+//         if(fl==0){
+//             return pali(s,sta+1,end-1)+2;
+//         }
+//         else{
+//             return max(pali(s,sta,end-1),pali(s,sta+1,end));
+//         }
+//     }
+    string longestPalindrome(string s) {
+//         pair<int,int> rr = pali(s,0,s.size()-1);
+//         string subs="";
+//         int start;
+//         int end;
+//         if(rr.first%2==0){
+//             // int mid=
+//             start=rr.second-rr.first/2;
+//             end=rr.first-1;
+//         }
+//         else{
+//             start=rr.second-(rr.first-1)/2;
+//             end=rr.first;
+            
+//         }
+//         cout<<rr.first<<"  "<<rr.second;
+//         for(int i=start;i<start+rr.first;i++){
+//             subs+=s[i];
+//         }
+        // return subs;
+        return palindr(s);
+        
+    }
+};
+
